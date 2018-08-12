@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
-export class SummaryComponent implements OnInit {
+export class SummaryComponent {
 
-  @Input() stock: any;
+   @Input() stock: any;
 
   isNegative() {
     return (this.stock && this.stock.change < 0);
@@ -18,8 +18,4 @@ export class SummaryComponent implements OnInit {
   }
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

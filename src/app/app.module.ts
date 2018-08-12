@@ -12,10 +12,12 @@ import { SummaryComponent } from './components/summary/summary.component';
     SummaryComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserModule
   ],
-  providers: [StocksService],
+  providers: [
+    StocksService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

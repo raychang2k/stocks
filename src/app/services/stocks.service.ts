@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-const stocks: Array<string> = ['AAPL', 'GOO', 'FB', 'AMZN', 'TWTR'];
+const stocks: Array<string> = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR'];
 const service = 'https://angular2-in-action.api.herokuapp.com';
 
 export interface StockInterface {
@@ -33,9 +33,14 @@ export class StocksService {
     return this.get();
   }
 
-  load(symobls) {
-    if (symobls) {
-      return this.http.get<Array<StockInterface>>(service + '/stocks/snapshot?symobls=' + symobls.join());
+  load(symbols) {
+    if (symbols) {
+      const url: string = service + '/stocks/snapshot';
+      let params: HttpParams = new HttpParams()
+        .set('symbols', symbols.join());
+
+      console.log(params.toString());
+      return this.http.get<Array<StockInterface>>(url, {params});
     }
   }
 }
