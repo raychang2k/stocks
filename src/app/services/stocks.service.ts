@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const stocks: Array<string> = ['AAPL', 'GOOG', 'FB', 'AMZN', 'TWTR'];
-const service = 'https://angular2-in-action.api.herokuapp.com';
+const service = 'https://angular2-in-action-api.herokuapp.com';
 
 export interface StockInterface {
-  symobl: string;
+  symbol: string;
   lastTradePriceOny: number;
   change: number;
   changeInPercent: number;
@@ -35,12 +35,7 @@ export class StocksService {
 
   load(symbols) {
     if (symbols) {
-      const url: string = service + '/stocks/snapshot';
-      let params: HttpParams = new HttpParams()
-        .set('symbols', symbols.join());
-
-      console.log(params.toString());
-      return this.http.get<Array<StockInterface>>(url, {params});
+      return this.http.get<Array<StockInterface>>(service + '/stocks/snapshot?symbols=' + symbols.join());
     }
   }
 }
